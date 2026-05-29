@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.Map;
 
 @Controller
 @Slf4j
@@ -24,7 +24,7 @@ public class ParamController {
     // ------------------------------------------------------
 //    @RequestMapping(value = "/p01",method = RequestMethod.GET)
     @GetMapping("/p01")
-    public String paramHandler_1(@RequestParam(required = false) String name) {
+    public String paramHandler_1(@RequestParam(required = false) String name) throws FileNotFoundException {
         log.info("GET /param/p01.." + name);
         return "param/page01";
         // application.properties 설정값
@@ -33,9 +33,10 @@ public class ParamController {
 
 //    @RequestMapping(value = "/p02",method = RequestMethod.POST)
     @PostMapping("/p02")
-    public String paramHandler_2(@RequestParam(name = "username") String name) {
+    public String paramHandler_2(@RequestParam(name = "username") String name) throws FileNotFoundException {
         log.info("GET /param/p02.." + name);
-        return "param/page02";
+        throw new FileNotFoundException("파일을 찾을 수 없습니다.");
+//        return "param/page02";
         // /WEB-INF/views/param/p02.jsp
     }
 
@@ -227,24 +228,4 @@ public class ParamController {
         model.addAttribute("step2","step2_value");
         return "param/redirect/step2";
     }
-
-    // ------------------------------------------------------
-    // 파라미터 : Map<String, Object>
-    // ------------------------------------------------------
-    @GetMapping("/mso")
-    public void mapStringObjectParamTest(@RequestParam Map<String,Object> param) {
-        log.info("GET /param/mso..." + param);
-    }
-    @PostMapping("/mso")
-    public void mapStringObjectParamTest_Post(@RequestBody Map<String,Object> param) {
-        log.info("POST /param/mso..." + param);
-    }
 }
-
-
-
-
-
-
-
-
