@@ -33,4 +33,9 @@ public class ThymeleafTestController {
         log.info("is auth ? " + isAuth);
         model.addAttribute("isAuth", isAuth);
     }
+
+    @GetMapping("/fragments")
+    public void fragment_test(Model model) {
+        log.info("GET /th/fragemnts");
+    }
 }
