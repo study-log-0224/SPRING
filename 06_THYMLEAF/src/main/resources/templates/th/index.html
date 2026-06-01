@@ -6,8 +6,8 @@
 </head>
 <body>
 
-<!--  헤더 영역 가져오기  -->
-<!--<th:block th:insert="~{th/fragments/header::headerFragment}"/>-->
+<!--  헤더영역 가져오기  -->
+<th:block th:insert="~{th/fragments/header::headerFragment}"  />
 
 <h1>HELLO WORLD THYMELEAF!</h1>
 <!-- 기본 -->
@@ -37,8 +37,9 @@ DTO.ADDR : <span th:text="${dto.addr}"> </span> <br/>
 <a th:href="@{/param/p01(name=${name}) }">th:/param/p01 이동</a> <br/>
 <a th:href="@{/param/p06(name=${dto.name},age=${dto.age},addr=${dto.addr})}">th:/param/06</a> <br/>
 
-<!--  푸터 영역 가져오기  -->
-<!--<th:block th:insert="~{th/fragments/footer::footerFragment}"/>-->
+<!--  푸터영역 가져오기  -->
+<th:block th:insert="~{th/fragments/footer::footerFragment}" />
+<th:block th:insert="~{th/fragments/footer::footerFragment-2}" />
 
 <script th:inline="javascript">
     //name 확인
