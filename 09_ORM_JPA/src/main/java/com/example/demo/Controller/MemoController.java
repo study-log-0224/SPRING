@@ -3,7 +3,6 @@ package com.example.demo.Controller;
 
 import com.example.demo.Domain.Common.Daos.MemoDAO;
 import com.example.demo.Domain.Common.Dtos.MemoDTO;
-import com.example.demo.Domain.Common.Mapper.MemoMapper;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.beans.PropertyEditorSupport;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Controller
@@ -27,8 +25,6 @@ import java.time.format.DateTimeFormatter;
 public class MemoController {
     @Autowired
     private MemoDAO memoDAO;
-    @Autowired
-    private MemoMapper memoMapper;
 
     @ExceptionHandler
     public String SQLExceptionHandler(Exception e , Model model) {
@@ -56,10 +52,7 @@ public class MemoController {
             return "memo/add";
         }
         // 3. 서비스실행
-        int result = memoMapper.insert(memoDTO);
-
-//        memoDTO.setCreateAt(LocalDateTime.now());
-//        int result = memoMapper.insert(memoDTO);
+        int result = memoDAO.insert(memoDTO);
 
         // 4. 뷰로 이동(+값)\
         if(result > 0)
