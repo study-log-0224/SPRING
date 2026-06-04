@@ -20,6 +20,8 @@ public class Memo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(length = 1024)
+    private String title;
+    @Column(length = 1024)
     private String text;
     @Column(length = 100, nullable = false)
     private String writer;
