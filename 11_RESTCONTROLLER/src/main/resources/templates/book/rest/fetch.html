@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>BOOK REST - fetch (실습)</title>
+</head>
+<body>
+    <h1>/BOOK/REST/fetch <small>(Fetch API)</small></h1>
+
+    <!-- TODO-17: 입력 폼 + 목록 테이블 만들기                                   -->
+    <!--   - 입력칸: bookCode / bookName / publisher / isbn + [등록] 버튼        -->
+    <!--   - 목록 테이블 <tbody id="bookTbody"> (열: 코드/도서명/출판사/ISBN/관리) -->
+
+    <script>
+        const BASE = '/book/rest';
+
+        // TODO-18: fetch() 로 CRUD 연결
+        //  핵심 패턴:
+        //    const res = await fetch(url, {
+        //        method, headers:{'Content-Type':'application/json'},
+        //        body: JSON.stringify(body)            // GET 은 body 생략
+        //    });
+        //    const data = await res.json();
+        //    res.ok / res.status 로 성공·실패 분기
+        //  1) loadList() : GET  `${BASE}/list?pageNo=0&amount=10` → data.list 렌더링
+        //  2) 등록       : POST `${BASE}/add`
+        //  3) 수정       : PUT  `${BASE}/update`
+        //  4) 삭제       : DELETE `${BASE}/delete` (body: {bookCode})
+        //  5) res.status===400 일 때 응답 JSON 의 필드 에러 표시
+
+    </script>
+</body>
+</html>

@@ -23,7 +23,18 @@ import java.util.Map;
 @Controller
 @Slf4j
 @RequestMapping("/memo")
-public class Memo_addRest_Controller {
+@CrossOrigin(
+//        origins = {"http://localhost:5500","http://127.0.0.1:5500"}
+//        originPatterns = {"*"},
+        originPatterns = {
+                "http://192.168.10.*:[*]",  // SUBNET IP 192.168.10.0 의 모든 포트 허용
+                "http://localhost:[*]"      //
+        },
+        allowCredentials = "false", // 서버인증 SESSION 기반 : true, TOKEN 기반 : false
+        allowedHeaders = {"Content-Type", "application/json"},
+        methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE}
+)
+public class Memo_addRest_Controller_cors {
 
     @Autowired
     private MemoService memoService;
@@ -51,10 +62,10 @@ public class Memo_addRest_Controller {
         log.info("GET /memo/rest/fetch");
         return "memo/rest/fetch";
     }
-    @GetMapping("/rest/ajax")
+    @GetMapping("/rest/jquery")
     public String restIndex_ajax(){
-        log.info("GET /memo/rest/ajax");
-        return "memo/rest/ajax";
+        log.info("GET /memo/rest/jquery");
+        return "memo/rest/jquery";
     }
     @GetMapping("/rest/axios")
     public String restIndex_axios(){
@@ -83,7 +94,7 @@ public class Memo_addRest_Controller {
 
     @ResponseBody
     @PostMapping(value = "/rest/add",consumes = MediaType.APPLICATION_JSON_VALUE,produces =  MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity< Map<String,Object>  > memoAddPost_rest(@RequestBody @Valid MemoDTO memoDTO, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) throws Exception {
+    public ResponseEntity< Map<String,Object>  > memoAddPost_rest(@RequestBody @Valid MemoDTO memoDTO, BindingResult bindingResult) throws Exception {
         Map<String,Object> responseMap = new HashMap<>();
         //1. 파라미터 받기
         log.info("POST /memo/add..." + memoDTO);
@@ -103,6 +114,50 @@ public class Memo_addRest_Controller {
 
         //4. 뷰로 이동(+값)
         responseMap.put("message","메모추가 성공!");
+        return ResponseEntity.status(HttpStatus.OK).body(responseMap);
+    }
+
+    @ResponseBody
+    @PutMapping(value = "/rest/update",consumes = MediaType.APPLICATION_JSON_VALUE,produces =  MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity< Map<String,Object>  > memoUpdatePut_rest(@RequestBody @Valid MemoDTO memoDTO, BindingResult bindingResult) throws Exception {
+        Map<String,Object> responseMap = new HashMap<>();
+        //1. 파라미터 받기
+        log.info("POST /memo/rest/update..." + memoDTO);
+//        log.info("BindingResult : " + result);
+
+        //2. 유효성 검증
+        if(bindingResult.hasErrors()){
+            for(FieldError error  : bindingResult.getFieldErrors()){
+                log.info("Error Field : "+error.getField()+" Error Message : "+error.getDefaultMessage());
+                responseMap.put(error.getField(),error.getDefaultMessage());
+            }
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseMap);
+        }
+
+        //3. 서비스 실행
+        boolean isRegistration = memoService.updateMemo(memoDTO);
+
+        //4. 뷰로 이동(+값)
+        responseMap.put("message","메모수정 성공!");
+        return ResponseEntity.status(HttpStatus.OK).body(responseMap);
+    }
+
+    @ResponseBody
+    @DeleteMapping(value = "/rest/delete",consumes = MediaType.APPLICATION_JSON_VALUE,produces =  MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity< Map<String,Object>  > memoDelete_rest(@RequestBody MemoDTO dto) throws Exception {
+        Map<String,Object> responseMap = new HashMap<>();
+        //1. 파라미터 받기
+        log.info("POST /memo/rest/delete..." + dto.getId());
+//        log.info("BindingResult : " + result);
+
+        //2. 유효성 검증
+
+
+        //3. 서비스 실행
+        boolean isRegistration = memoService.removeMemo(dto.getId());
+
+        //4. 뷰로 이동(+값)
+        responseMap.put("message","메모삭제 성공!");
         return ResponseEntity.status(HttpStatus.OK).body(responseMap);
     }
 

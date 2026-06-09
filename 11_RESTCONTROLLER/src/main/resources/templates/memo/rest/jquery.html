@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="https://cdn.jsdelivr.net/npm/axios@1.17.0/dist/axios.min.js"></script>
+    <!-- JQUERY CDN  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
-<h1>(axios)/MEMO/REST/INDEX</h1>
+<h1>(JQuery-AJAX)/MEMO/REST/INDEX</h1>
 
 <!--  LIST  -->
 <h1>/memo/rest/list</h1>
@@ -81,13 +82,20 @@
         const pageNo = formList.pageNo.value;
         const amount = formList.amount.value;
 
-        // axios
-        const requestOption = {headers: {"Content-Type": "application/json"},data:{}};
-        axios.get(`/memo/rest/list?pageNo=${pageNo}&amount=${amount}`,requestOption)
-            .then(resp=>{console.log(resp.data);})
-            .catch(error=>{console.log(error.data);})
-    }
+        $.ajax({
+            url : `/memo/rest/list?pageNo=${pageNo}&amount=${amount}`,
+            method : "GET",
+            contentType : "application/json",
+            dataType : "json",
+            success : function(data){console.log(data);},
+            error : function (xhr,status,error){console.log(error);}
+        })
 
+        // const opt = {method: "GET", headers: {"Content-Type": "application/json"}}
+        // const response = await fetch(`/memo/rest/list?pageNo=${pageNo}&amount=${amount}`,opt);
+        // const data = await response.json();
+        // console.log(data);
+    }
     // add
     async function addMemo() {
         const formAdd = document.formAdd;
@@ -97,11 +105,20 @@
         const body = {title, text, writer};
         const jsonBody = JSON.stringify(body);
 
-        // axios
-        const requestOption = {headers: {"Content-Type": "application/json"}};
-        axios.post(`/memo/rest/add`,jsonBody,requestOption)
-            .then(resp=>{console.log(resp);})
-            .catch(error=>{console.log(error);})
+        $.ajax({
+            url : `/memo/rest/add`,
+            method : "POST",
+            contentType : "application/json",
+            dataType : "json",
+            data : jsonBody,
+            success : function(data){console.log(data);},
+            error : function (xhr,status,error){console.log(error);}
+        })
+
+        // const opt = {method: "POST", headers: {"Content-Type": "application/json"},body : jsonBody}
+        // const response = await fetch(`/memo/rest/add`,opt);
+        // const data = await response.json();
+        // console.log(data);
     }
     // update
     async function updateMemo() {
@@ -113,11 +130,20 @@
         const body = {id,title, text, writer};
         const jsonBody = JSON.stringify(body);
 
-        // axios
-        const requestOption = {headers: {"Content-Type": "application/json"}};
-        axios.put(`/memo/rest/update`,jsonBody,requestOption)
-            .then(resp=>{console.log(resp);})
-            .catch(error=>{console.log(error);})
+        $.ajax({
+            url : `/memo/rest/update`,
+            method : "PUT",
+            contentType : "application/json",
+            dataType : "json",
+            data : jsonBody,
+            success : function(data){console.log(data);},
+            error : function (xhr,status,error){console.log(error);}
+        })
+
+        // const opt = {method: "PUT", headers: {"Content-Type": "application/json"},body : jsonBody}
+        // const response = await fetch(`/memo/rest/update`,opt);
+        // const data = await response.json();
+        // console.log(data);
 
     }
     // delete
@@ -127,11 +153,20 @@
         const body = {id};
         const jsonBody = JSON.stringify(body);
 
-        // axios
-        const requestOption = {headers: {"Content-Type": "application/json"}, data:jsonBody};
-        axios.delete(`/memo/rest/delete`,requestOption)
-            .then(resp=>{console.log(resp);})
-            .catch(error=>{console.log(error);})
+        $.ajax({
+            url : `/memo/rest/delete`,
+            method : "DELETE",
+            contentType : "application/json",
+            dataType : "json",
+            data : jsonBody,
+            success : function(data){console.log(data);},
+            error : function (xhr,status,error){console.log(error);}
+        })
+
+        // const opt = {method: "DELETE", headers: {"Content-Type": "application/json"},body : jsonBody}
+        // const response = await fetch(`/memo/rest/delete`,opt);
+        // const data = await response.json();
+        // console.log(data);
     }
 
 </script>
