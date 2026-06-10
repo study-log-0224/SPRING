@@ -47,7 +47,6 @@ public class OpenData_02_Controller {
                 restTemplate.exchange(uri, HttpMethod.GET, null, Root.class);
         // 응답 변환 처리
         System.out.println(response.getBody());
-        log.info("GET /Open/Bus...");
     }
 
     private static class ArrList{
