@@ -7,10 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @Slf4j
-@RequestMapping("/Kakao")
-public class KakaoMapController {
-    @GetMapping("/map")
-    public void main() {
-        log.info("GET /kakao/map...");
+@RequestMapping("/Kakao/channel")
+public class C03KakaoChannelController {
+
+    @GetMapping
+    public void channel() {
+        log.info("GET /Kakao/channel...");
     }
+
 }
