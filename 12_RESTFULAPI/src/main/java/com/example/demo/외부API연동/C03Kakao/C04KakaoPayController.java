@@ -17,7 +17,7 @@ import org.springframework.web.client.RestTemplate;
 @RequestMapping("/Kakao/pay")
 public class C04KakaoPayController {
 
-    private String SECRET_KEY="DEV8100D89F016D21BD1F66154A32F014EA2FFDB";
+    private String SECRET_KEY="-";
 
     @GetMapping
     @ResponseBody

@@ -22,8 +22,8 @@ import org.springframework.web.client.RestTemplate;
 @RequestMapping("/Naver")
 public class NaverLoginController {
 
-    private String CLIENT_ID = "19TFjenPE0RDVtn3KB1E";
-    private String CLIENT_SECRET = "xUuPbIa0i3";
+    private String CLIENT_ID = "-";
+    private String CLIENT_SECRET = "-";
     private String CALLBACK_URL = "http://127.0.0.1:8080/Naver/callback";
 
     private NaverTokenResponse naverTokenResponse;

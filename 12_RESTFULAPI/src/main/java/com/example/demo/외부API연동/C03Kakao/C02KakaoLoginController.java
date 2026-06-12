@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/Kakao")
 public class C02KakaoLoginController {
 
-    private String CLIENT_ID = "def47d968b888daa25a954c250c6bb09";
+    private String CLIENT_ID = "-";
     private String REDIRECT_URI = "http://192.168.5.12:8080/Kakao/callback";
     private String LOGOUT_REDIRECT_URI = "http://192.168.5.12:8080/Kakao/login";
     private KakaoTokenResponse kakaoTokenResponse;
