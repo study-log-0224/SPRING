@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class OpenData_02_Controller {
     // &bsId=7001001600&routeNo=649
     private String server = "https://apis.data.go.kr/6270000/dbmsapi02/getRealtime02";
-    private String serviceKey = "fc2ad88577ffd8918f5a7ef3b3f7dde5a41218d7bb38a6742f5fa3150d48de0e";
+    private String serviceKey = "-";
     private String bsId = "7001001600";
     private String routeNo = "649";
 

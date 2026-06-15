@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class OpenData_01_Controller {
 
     private String server = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst";
-    private String serviceKey = "fc2ad88577ffd8918f5a7ef3b3f7dde5a41218d7bb38a6742f5fa3150d48de0e";
+    private String serviceKey = "-";
     private String pageNo = "1";
     private String numOfRows = "1000";
     private String dataType = "JSON";

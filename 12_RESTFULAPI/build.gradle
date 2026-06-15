@@ -40,6 +40,19 @@ dependencies {
 
 	//MAIL
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
+
+	// MYSQL CONNECTOR JAVA
+	runtimeOnly 'com.mysql:mysql-connector-j'
+	// JDBC API
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	// JPA
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	// Source: https://mvnrepository.com/artifact/com.google.firebase/firebase-messaging
+	implementation 'com.google.firebase:firebase-messaging:25.0.2'
+
+	// Source: https://mvnrepository.com/artifact/com.google.firebase/firebase-admin
+	implementation 'com.google.firebase:firebase-admin:9.9.0'
 }
 
 tasks.named('test') {

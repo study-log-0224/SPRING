@@ -17,7 +17,7 @@ import java.net.URI;
 public class OpenData_03_Controller {
     // ?serviceKey=fc2ad88577ffd8918f5a7ef3b3f7dde5a41218d7bb38a6742f5fa3150d48de0e&pageNo=1&numOfRows=10
     private String server = "https://apis.data.go.kr/6270000/service/rest/dgincident";
-    private String serviceKey = "fc2ad88577ffd8918f5a7ef3b3f7dde5a41218d7bb38a6742f5fa3150d48de0e";
+    private String serviceKey = "-";
     private String pageNo = "1";
     private String numOfRows = "10";
 

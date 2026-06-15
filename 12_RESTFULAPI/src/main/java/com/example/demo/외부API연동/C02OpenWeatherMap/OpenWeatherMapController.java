@@ -21,7 +21,7 @@ import java.util.Map;
 public class OpenWeatherMapController {
 
     private String server = "https://api.openweathermap.org/data/2.5/weather";
-    private String appid = "4b3fb92db2b6a5ff53adb4202322bb41";
+    private String appid = "-";
 
     //동기요청 방식(SPRING BOOT 단독 FN + BN)
     @GetMapping("/index")
