@@ -45,6 +45,10 @@ public class SecurityConfig {
             exception.authenticationEntryPoint(new CustomAuthenticationEntryPoint()); // 미인증된 상태 + 권한이 필요한 Endpoint 접근 시 예외처리
             exception.accessDeniedHandler(new CustomAccessDeniedHandler()); // 인증이후 권한이 부족할 때
         });
+        // OAuth2-Client 활성
+        http.oauth2Login((oauth2)->{
+            oauth2.loginPage("/login");
+        });
 
         return http.build();
     }
