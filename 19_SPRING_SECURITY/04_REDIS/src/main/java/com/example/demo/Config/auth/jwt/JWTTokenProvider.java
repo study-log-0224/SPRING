@@ -19,8 +19,10 @@ import org.springframework.stereotype.Component;
 
 import java.security.Key;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -29,19 +31,20 @@ public class JWTTokenProvider {
 
     @Autowired
     private UserRepository userRepository;
+
     @Autowired
     private SignatureRepository signatureRepository;
 
     //Key
-    private Key key;
+    private Key key ;
 
 
-        public Key getKey(){
-                return this.key;
-        }
+    public Key getKey(){
+            return this.key;
+    }
 
-        @PostConstruct
-        public void init(){
+    @PostConstruct
+    public void init(){
             List<Signature> list = signatureRepository.findAll();
             if(list.isEmpty()){
                 byte[] keyBytes = KeyGenerator.keyGen();
@@ -59,9 +62,11 @@ public class JWTTokenProvider {
 
         }
 
+
     public TokenInfo generateToken(Authentication authentication){
 
         //계정정보 - 계정명 / auth(role)
+        //"ROLE_USER,ROLE_MANAGER"
         String authorities = authentication  .getAuthorities()// Collection<SimpleGrantedAuthority> authorities 반환
                 .stream()   // Stream 함수 사용예정
                 .map((role)->{return role.getAuthority();}) // 각각 GrantedAuthoriy("ROLE~")들을 문자열값으로 반환해서 map처리
@@ -114,7 +119,7 @@ public class JWTTokenProvider {
             dto.setRole(auth);
             dto.setPassword(null);
 
-            principalDetails = new PrincipalDetails(dto, null);
+            principalDetails = new PrincipalDetails(dto,null);
         }
 
         if(principalDetails!=null) {

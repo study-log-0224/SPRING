@@ -16,7 +16,8 @@ import java.net.URLEncoder;
 public class CustomAccessDeniedHandler implements AccessDeniedHandler {
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
-        log.info("CustomAccessDeniedHandler's handle invoke...");
-        response.sendRedirect("/login?error=" + URLEncoder.encode(accessDeniedException.getMessage(), "utf-8"));
+        log.info("CustomAccessDeniedHandler's handle invoke....");
+        response.sendRedirect("/login?error="+ URLEncoder.encode(accessDeniedException.getMessage(),"utf-8"));
+
     }
 }

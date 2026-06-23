@@ -13,4 +13,8 @@ public class UserDTO {
     private String username;
     private String password;
     private String role;
+
+    //OAuth2 Client Info
+    private String provider;
+    private String providerId;
 }
